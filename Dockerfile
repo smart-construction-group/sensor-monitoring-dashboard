@@ -11,9 +11,6 @@ WORKDIR /app
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
-# environment variables
-# ENV NODE_OPTIONS=--openssl-legacy-provider
-
 # install project dependencies
 RUN npm install
 
