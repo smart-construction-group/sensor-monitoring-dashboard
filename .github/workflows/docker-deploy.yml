@@ -1,4 +1,5 @@
 name: docker-deploy
+run-name: ${{ github.actor }} is deploying with docker
 on: [push]
 jobs:
   deploy:
