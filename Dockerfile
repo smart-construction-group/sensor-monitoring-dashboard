@@ -1,5 +1,5 @@
 # Choose the Image which has Node installed already
-FROM node:lts-alpine
+FROM node:16-buster
 
 
 # install simple http server for serving static content
@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # environment variables
-ENV NODE_OPTIONS=--openssl-legacy-provider
+# ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # install project dependencies
 RUN npm install
