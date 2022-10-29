@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-        columns: ["ts", "name", "device_id", "value", "type", "x", "y"]
+      columns: ["ts", "name", "device_id", "value", "type", "x", "y"],
     };
   },
   computed: {
