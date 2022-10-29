@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # environment variables
-ENV NODE_OPTIONS=--openssl-legacy-provider
+# ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # install project dependencies
 RUN npm install
