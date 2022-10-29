@@ -12,6 +12,7 @@ jobs:
         name: Docker Build
         run: docker build -t sensor-dashboard .
   deploy:
+    needs: build
     runs-on: self-hosted
     steps:
       -
