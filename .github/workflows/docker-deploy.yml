@@ -17,5 +17,5 @@ jobs:
     steps:
       -
         name: deploy
-        run: docker start sensor-dashboard || docker run -p 8080:8080 --name sensor-dashboard -d sensor-dashboard
+        run: docker stop sensor-dashboard; docker rm sensor-dashboard; docker run -p 8080:8080 --name sensor-dashboard -d sensor-dashboard
         #If the container already is running, `docker start` will return 0 thus no `docker run` is executed.
