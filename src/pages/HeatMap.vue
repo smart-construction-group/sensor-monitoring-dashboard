@@ -209,7 +209,7 @@ export default {
       ],
       tabs: ["Heat Map", "Boundary", "Table"],
       activeTab: "Heat Map",
-      intervals: ["daily", "hourly", "minutely"],
+      intervals: ["daily", "hourly", "30min", "15min", "5min", "minutely"],
       city: "berlin",
 
       myData: {
