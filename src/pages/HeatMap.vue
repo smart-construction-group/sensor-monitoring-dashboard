@@ -169,6 +169,13 @@
                 <boundary-component v-else-if="activeTab == 'Boundary'" width="840" height="500" v-model="heatMapData">
                 </boundary-component>
                 <data-table-component v-else-if="activeTab == 'Table'" v-model="heatMapData"></data-table-component>
+                <div class="legend-box">
+                  <div>
+                  <span>{{customize.min.toFixed(2)}}</span>
+                  <span class="float-right">{{customize.max.toFixed(2)}}</span>
+                  </div>
+                  <img src="img/heatmap legend.png" width="150">
+                </div>
               </template>
             </card>
           </div>
@@ -356,5 +363,16 @@ export default {
 .heatmap-table {
   max-height: 600px;
   overflow: scroll;
+}
+
+.legend-box{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 5px;
+  margin: 50px 10px;
 }
 </style>
