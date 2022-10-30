@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import { formatDate } from '../utils/Utils'
-const APIUrl = "http://141.11.246.83:8080"
+const APIUrl = "http://141.11.246.83:9090"
 // const APIUrl = "http://localhost:9090"
 
 
