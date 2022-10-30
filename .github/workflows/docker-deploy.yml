@@ -17,4 +17,5 @@ jobs:
     steps:
       -
         name: deploy
-        run: docker run sensor-dashboard
+        run: docker start sensor-dashboard || docker run --name sensor-dashboard -d sensor-dashboard
+        #If the container already is running, `docker start` will return 0 thus no `docker run` is executed.
