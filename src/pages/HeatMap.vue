@@ -169,7 +169,7 @@
                 <boundary-component v-else-if="activeTab == 'Boundary'" width="840" height="500" v-model="heatMapData">
                 </boundary-component>
                 <data-table-component v-else-if="activeTab == 'Table'" v-model="heatMapData"></data-table-component>
-                <div class="legend-box">
+                <div v-if="activeTab != 'Table'" class="legend-box">
                   <div>
                   <span>{{customize.min.toFixed(2)}}</span>
                   <span class="float-right">{{customize.max.toFixed(2)}}</span>
