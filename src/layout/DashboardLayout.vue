@@ -3,7 +3,7 @@
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/admin/heatmap">
-        <i class="nc-icon nc-sun-fog-29"></i>
+        <i class="nc-icon nc-map-big"></i>
         <p>Heat Map 2D</p>
       </sidebar-link>
       <sidebar-link to="/admin/heatmap3d">
