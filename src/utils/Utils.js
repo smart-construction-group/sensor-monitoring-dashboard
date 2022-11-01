@@ -37,7 +37,7 @@ export function getRandomColor() {
 
 export function heatMapColorforValue(value) {
   var h = (1.0 - value) * 240
-  return "hsla(" + h + ", 100%, 50%, 50%)";
+  return "hsla(" + h + ", 100%, 50%, 70%)";
 }
 
 export function downloadAsCsv(document, headers, data, fileName) {

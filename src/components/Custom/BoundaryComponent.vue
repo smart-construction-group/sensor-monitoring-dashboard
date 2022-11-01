@@ -66,6 +66,31 @@ export default {
         "07_LT_022_Door": [392, 325, 498, 373],
         "03_ComputerLab_019": [311, 271, 389, 371],
       },
+      circles: {
+        "27_LT_056": [450, 100],
+        "20_ComputerLab_015": [346, 62],
+        "21_ComputerLab_016": [344, 139],
+        "22_ComputerLab_017": [344, 209],
+        "01_ComputerLab_012_Far": [271, 135],
+        "02_ComputerLab_012_Near": [272, 266],
+        "08_ComputerLab_013": [193, 218],
+        "09_ComputerLab_014": [197,282],
+        "54_HarrisStreet": [56, 289],
+        "52_Foyer_Lifts": [239,406],
+        "50_Foyer_DoorInside": [234 , 360],
+        "53_Foyer_DoorOutside": [135, 353],
+        "23_StudyArea_050": [484,383],
+        "05_KitchenArea_034_Fridge": [443, 421],
+        "04_Guthrie_Foyer_025": [215, 480],
+        "12_Guthrie_028_Door": [326, 552],
+        "29_GuthrieLT_028_Front": [229, 635],
+        "26_Classroom_053": [573, 137],
+        "25_Classroom_052": [573, 208],
+        "24_Classroom_051": [573, 287],
+        "28_LT_022_Front": [441, 254],
+        "07_LT_022_Door": [446, 337],
+        "03_ComputerLab_019": [347,324],
+      },
     };
   },
   mounted() {
@@ -78,7 +103,7 @@ export default {
     });
   },
   methods: {
-    render() {
+    renderRects() {
       this.clearCanvas();
       var c = this.$refs.boundary;
       let min = this.value.min;
@@ -96,6 +121,30 @@ export default {
         }
       }
     },
+    renderCircles(){
+      this.clearCanvas();
+      var c = this.$refs.boundary;
+      let min = this.value.min;
+      let max = this.value.max;
+      var ctx = c.getContext("2d");
+      console.log("rednering circles on canvas: ", this.value);
+      for(var record of this.value.data){
+            ctx.beginPath();
+            let heatMapValue = (record.value - min) / (max - min);
+            if (heatMapValue > 1) heatMapValue = 1;
+            else if (heatMapValue < 0) heatMapValue = 0;
+            ctx.fillStyle = heatMapColorforValue(heatMapValue);
+            let circle = this.circles[record.name];
+            if(!circle) continue;
+            ctx.arc(circle[0], circle[1], 30, 0, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.font = '20px Calibri';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.fillText(`${record.value.toFixed(2)}`, circle[0], circle[1]+8);
+      }
+
+    },
     clearCanvas() {
       let canvas = this.$refs.boundary;
       const context = canvas.getContext("2d");
@@ -105,7 +154,7 @@ export default {
   watch: {
     model(val, oldVal) {
       console.log("heatmap model changed: ", val);
-      this.render();
+      this.renderCircles();
     },
   },
 };
