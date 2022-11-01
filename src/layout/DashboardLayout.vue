@@ -6,7 +6,10 @@
         <i class="nc-icon nc-sun-fog-29"></i>
         <p>Heat Map 2D</p>
       </sidebar-link>
-
+      <sidebar-link to="/admin/heatmap3d">
+        <i class="nc-icon nc-album-2"></i>
+        <p>Heat Map 3D</p>
+      </sidebar-link>
       <div v-if="false">
         <sidebar-link to="/admin/overview">
           <i class="nc-icon nc-chart-pie-35"></i>

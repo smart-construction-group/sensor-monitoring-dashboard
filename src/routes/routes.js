@@ -12,6 +12,7 @@ import Icons from 'src/pages/Icons.vue'
 import Notifications from 'src/pages/Notifications.vue'
 import Upgrade from 'src/pages/Upgrade.vue'
 import HeatMap from 'src/pages/HeatMap.vue'
+import HeatMap3D from 'src/pages/HeatMap3D.vue'
 const routes = [
   {
     path: '/',
@@ -27,6 +28,11 @@ const routes = [
         path: 'heatmap',
         name: 'HeatMap',
         component: HeatMap
+      },
+      {
+        path: 'heatmap3d',
+        name: 'HeatMap3D',
+        component: HeatMap3D
       },
       {
         path: 'overview',
