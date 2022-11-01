@@ -9,8 +9,7 @@
         </ul>
       </nav>
       <div class="copyright text-center">
-        &copy; Coded with
-        <i class="fa fa-heart heart"></i> by
+        &copy; Coded by
         <a href="https://smart-construction-group.com" target="_blank">Smart Construction Group</a>.
       </div>
     </div>
