@@ -16,12 +16,12 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview'
+    redirect: '/admin/heatmap'
   },
   {
     path: '/admin',
     component: DashboardLayout,
-    redirect: '/admin/overview',
+    redirect: '/admin/heatmap',
     children: [
       {
         path: 'heatmap',

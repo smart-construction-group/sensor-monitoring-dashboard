@@ -1,22 +1,22 @@
 function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-  }
-  
- export function formatDate(date) {
-    return (
-      [
-        date.getFullYear(),
-        padTo2Digits(date.getMonth() + 1),
-        padTo2Digits(date.getDate()),
-      ].join('-') +
-      ' ' +
-      [
-        padTo2Digits(date.getHours()),
-        padTo2Digits(date.getMinutes()),
-        padTo2Digits(date.getSeconds()),
-      ].join(':')
-    );
-  }
+  return num.toString().padStart(2, '0');
+}
+
+export function formatDate(date) {
+  return (
+    [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-') +
+    ' ' +
+    [
+      padTo2Digits(date.getHours()),
+      padTo2Digits(date.getMinutes()),
+      padTo2Digits(date.getSeconds()),
+    ].join(':')
+  );
+}
 
 export function getCursorPosition(canvas, event) {
   const rect = canvas.getBoundingClientRect()
@@ -35,7 +35,30 @@ export function getRandomColor() {
   return color;
 }
 
-export function heatMapColorforValue(value){
+export function heatMapColorforValue(value) {
   var h = (1.0 - value) * 240
   return "hsla(" + h + ", 100%, 50%, 50%)";
+}
+
+export function downloadAsCsv(document, headers, data, fileName) {
+  var csv = headers.join(',') + '\n';
+
+  //merge the data with CSV  
+  data.forEach(function (record) {
+    let keys = Object.keys(record)
+    let row = []
+    for(let k of keys){
+      row.push(record[k])
+    }
+    csv += row.join(',');
+    csv += "\n";
+  });
+
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  hiddenElement.target = '_blank';
+
+  //provide the name for the CSV file to be downloaded  
+  hiddenElement.download = fileName;
+  hiddenElement.click();
 }

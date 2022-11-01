@@ -13,7 +13,7 @@
         <span class="navbar-toggler-bar burger-lines"></span>
         <span class="navbar-toggler-bar burger-lines"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end">
+      <div v-if="false" class="collapse navbar-collapse justify-content-end">
         <ul class="nav navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="dropdown">

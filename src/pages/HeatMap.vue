@@ -159,6 +159,27 @@
                       height="32"
                       src="img/rotate-right-solid.svg" alt="">
                   </button>
+                  <span style="border-left: 1px solid black; padding:10px 0px; margin:5px"></span>
+                  <button class="btn btn-secondary btn-sm ml-2 p-0" @click="download">
+                    <div
+                      style="width:32px;height:32px;text-align:center; padding-top:1px"
+                      >
+                      <i class="fa fa-2x fa-download" aria-hidden="true"></i>
+                      <div style="font-size:10px; margin-top:-6px">ONE</div>
+                      
+                      </div>
+                    
+                  </button>
+                   <button class="btn btn-secondary btn-sm ml-2 p-0" @click="downloadAll">
+                    <div
+                      style="width:32px;height:32px;text-align:center; padding-top:1px"
+                      >
+                      <i class="fa fa-2x fa-download" aria-hidden="true"></i>
+                      <div style="font-size:10px; margin-top:-6px">ALL</div>
+                      
+                      </div>
+                    
+                  </button>
                 </span>
                 <heat-map-component
                 v-if="activeTab == 'Heat Map'"
@@ -171,10 +192,12 @@
                 <data-table-component v-else-if="activeTab == 'Table'" v-model="heatMapData"></data-table-component>
                 <div v-if="activeTab != 'Table'" class="legend-box">
                   <div>
-                  <span>{{customize.min.toFixed(2)}}</span>
-                  <span class="float-right">{{customize.max.toFixed(2)}}</span>
+                  <span>MAX: {{customize.max.toFixed(2)}}</span>
                   </div>
-                  <img src="img/heatmap legend.png" width="150">
+                  <img src="img/heatmap legend2.png" height="600">
+                  <div>
+                  <span>MIN: {{customize.min.toFixed(2)}}</span>
+                  </div>
                 </div>
               </template>
             </card>
@@ -194,6 +217,7 @@ import Card from "../components/Cards/Card.vue";
 import { fetchHeatMapData } from "../services/HeatMapApiService.js";
 import BoundaryComponent from "src/components/Custom/BoundaryComponent.vue";
 import DataTableComponent from "src/components/Custom/DataTableComponent.vue"
+import { downloadAsCsv } from '../utils/Utils';
 export default {
   components: {
     BaseSelect,
@@ -339,6 +363,24 @@ export default {
     },
     restart(){
       this.tableValue = this.tableData[0]
+    },
+    download(){
+      if(!this.tableValue) return
+      var data = this.myData[this.tableValue]
+      console.log(data)
+      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"]
+      downloadAsCsv(document, columns, data, `${this.typeVal} - ${this.tableValue}.csv`)
+    },
+    downloadAll(){
+      if(!this.tableValue) return
+      let keys = Object.keys(this.myData)
+      let data = []
+      for(let k of keys){
+        data = [...data, ...this.myData[k]]
+      }
+      console.log(data)
+      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"]
+      downloadAsCsv(document, columns, data, `${this.typeVal} - ${this.fromDate} - ${this.toDate}.csv`)
     }
   },
   watch: {
@@ -367,12 +409,17 @@ export default {
 
 .legend-box{
   position: absolute;
-  top: 50px;
+  top: 30px;
   right: 0;
   border: 2px solid black;
   border-radius: 5px;
   background-color: #fff;
   padding: 5px;
   margin: 50px 10px;
+  font-weight: bold;
+  align-content: center;
+}
+.legend-box img{
+  margin: 0 7px;
 }
 </style>
