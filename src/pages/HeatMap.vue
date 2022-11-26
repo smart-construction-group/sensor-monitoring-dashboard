@@ -53,7 +53,7 @@
         </card>
         <div class="row">
           <div class="col-3">
-            <card v-if="activeTab != 'Table' ">
+            <card v-if="activeTab != 'Table'">
               <template>
                 <h5>Customize</h5>
                 <div class="form-group" v-if="activeTab == 'Heat Map'">
@@ -118,18 +118,26 @@
             </card>
           </div>
           <div class="col-9">
-            <card style="min-height:500px">
+            <card style="min-height: 500px">
               <template>
                 <ul class="nav nav-tabs">
                   <li v-for="tab in tabs" :key="tab" class="nav-item">
-                    <a class="nav-link" :class="{'active':tab == activeTab}" @click="activeTab = tab">{{tab}}</a>
+                    <a
+                      class="nav-link"
+                      :class="{ active: tab == activeTab }"
+                      @click="activeTab = tab"
+                      >{{ tab }}</a
+                    >
                   </li>
                 </ul>
                 <span class="arrow-keys">
                   <button class="btn btn-sm p-0" @click="prevRecord">
-                    <img width="32"
+                    <img
+                      width="32"
                       height="32"
-                      src="img/chevron-left-solid.svg" alt="">
+                      src="img/chevron-left-solid.svg"
+                      alt=""
+                    />
                   </button>
                   <button class="btn ml-2 p-0">
                     <img
@@ -150,53 +158,85 @@
                     />
                   </button>
                   <button class="btn btn-sm ml-2 p-0" @click="nextRecord">
-                    <img width="32"
+                    <img
+                      width="32"
                       height="32"
-                      src="img/chevron-right-solid.svg" alt="">
+                      src="img/chevron-right-solid.svg"
+                      alt=""
+                    />
                   </button>
                   <button class="btn btn-sm ml-2 p-0" @click="restart">
-                    <img width="32"
+                    <img
+                      width="32"
                       height="32"
-                      src="img/rotate-right-solid.svg" alt="">
+                      src="img/rotate-right-solid.svg"
+                      alt=""
+                    />
                   </button>
-                  <span style="border-left: 1px solid black; padding:10px 0px; margin:5px"></span>
-                  <button class="btn btn-secondary btn-sm ml-2 p-0" @click="download">
+                  <span
+                    style="
+                      border-left: 1px solid black;
+                      padding: 10px 0px;
+                      margin: 5px;
+                    "
+                  ></span>
+                  <button
+                    class="btn btn-secondary btn-sm ml-2 p-0"
+                    @click="download"
+                  >
                     <div
-                      style="width:32px;height:32px;text-align:center; padding-top:1px"
-                      >
+                      style="
+                        width: 32px;
+                        height: 32px;
+                        text-align: center;
+                        padding-top: 1px;
+                      "
+                    >
                       <i class="fa fa-2x fa-download" aria-hidden="true"></i>
-                      <div style="font-size:10px; margin-top:-6px">ONE</div>
-                      
-                      </div>
-                    
+                      <div style="font-size: 10px; margin-top: -6px">ONE</div>
+                    </div>
                   </button>
-                   <button class="btn btn-secondary btn-sm ml-2 p-0" @click="downloadAll">
+                  <button
+                    class="btn btn-secondary btn-sm ml-2 p-0"
+                    @click="downloadAll"
+                  >
                     <div
-                      style="width:32px;height:32px;text-align:center; padding-top:1px"
-                      >
+                      style="
+                        width: 32px;
+                        height: 32px;
+                        text-align: center;
+                        padding-top: 1px;
+                      "
+                    >
                       <i class="fa fa-2x fa-download" aria-hidden="true"></i>
-                      <div style="font-size:10px; margin-top:-6px">ALL</div>
-                      
-                      </div>
-                    
+                      <div style="font-size: 10px; margin-top: -6px">ALL</div>
+                    </div>
                   </button>
                 </span>
                 <heat-map-component
-                v-if="activeTab == 'Heat Map'"
+                  v-if="activeTab == 'Heat Map'"
                   v-model="heatMapData"
                   width="840"
                   height="500"
                 ></heat-map-component>
-                <boundary-component v-else-if="activeTab == 'Boundary'" width="840" height="500" v-model="heatMapData">
+                <boundary-component
+                  v-else-if="activeTab == 'Boundary'"
+                  width="840"
+                  height="500"
+                  v-model="heatMapData"
+                >
                 </boundary-component>
-                <data-table-component v-else-if="activeTab == 'Table'" v-model="heatMapData"></data-table-component>
+                <data-table-component
+                  v-else-if="activeTab == 'Table'"
+                  v-model="heatMapData"
+                ></data-table-component>
                 <div v-if="activeTab != 'Table'" class="legend-box">
                   <div>
-                  <span>MAX: {{customize.max.toFixed(2)}}</span>
+                    <span>MAX: {{ customize.max.toFixed(2) }}</span>
                   </div>
-                  <img src="img/heatmap legend2.png" height="600">
+                  <img src="img/heatmap legend2.png" height="600" />
                   <div>
-                  <span>MIN: {{customize.min.toFixed(2)}}</span>
+                    <span>MIN: {{ customize.min.toFixed(2) }}</span>
                   </div>
                 </div>
               </template>
@@ -216,8 +256,8 @@ import HeatMapTable from "src/components/Custom/HeatMapTable.vue";
 import Card from "../components/Cards/Card.vue";
 import { fetchHeatMapData } from "../services/HeatMapApiService.js";
 import BoundaryComponent from "src/components/Custom/BoundaryComponent.vue";
-import DataTableComponent from "src/components/Custom/DataTableComponent.vue"
-import { downloadAsCsv } from '../utils/Utils';
+import DataTableComponent from "src/components/Custom/DataTableComponent.vue";
+import { downloadAsCsv } from "../utils/Utils";
 export default {
   components: {
     BaseSelect,
@@ -226,7 +266,7 @@ export default {
     HeatMapTable,
     Card,
     BoundaryComponent,
-    DataTableComponent
+    DataTableComponent,
   },
   data() {
     return {
@@ -236,7 +276,8 @@ export default {
         "humidity",
         "light",
         "ultrav",
-        "particleavg",
+        "particleavg10",
+        "particleavg2.5",
       ],
       tabs: ["Heat Map", "Boundary", "Table"],
       activeTab: "Heat Map",
@@ -361,27 +402,37 @@ export default {
       this.customize.min = min;
       this.customize.max = max;
     },
-    restart(){
-      this.tableValue = this.tableData[0]
+    restart() {
+      this.tableValue = this.tableData[0];
     },
-    download(){
-      if(!this.tableValue) return
-      var data = this.myData[this.tableValue]
-      console.log(data)
-      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"]
-      downloadAsCsv(document, columns, data, `${this.typeVal} - ${this.tableValue}.csv`)
+    download() {
+      if (!this.tableValue) return;
+      var data = this.myData[this.tableValue];
+      console.log(data);
+      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"];
+      downloadAsCsv(
+        document,
+        columns,
+        data,
+        `${this.typeVal} - ${this.tableValue}.csv`
+      );
     },
-    downloadAll(){
-      if(!this.tableValue) return
-      let keys = Object.keys(this.myData)
-      let data = []
-      for(let k of keys){
-        data = [...data, ...this.myData[k]]
+    downloadAll() {
+      if (!this.tableValue) return;
+      let keys = Object.keys(this.myData);
+      let data = [];
+      for (let k of keys) {
+        data = [...data, ...this.myData[k]];
       }
-      console.log(data)
-      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"]
-      downloadAsCsv(document, columns, data, `${this.typeVal} - ${this.fromDate} - ${this.toDate}.csv`)
-    }
+      console.log(data);
+      const columns = ["ts", "name", "device_id", "value", "type", "x", "y"];
+      downloadAsCsv(
+        document,
+        columns,
+        data,
+        `${this.typeVal} - ${this.fromDate} - ${this.toDate}.csv`
+      );
+    },
   },
   watch: {
     tableValue: function (val, oldVal) {
@@ -407,7 +458,7 @@ export default {
   overflow: scroll;
 }
 
-.legend-box{
+.legend-box {
   position: absolute;
   top: 30px;
   right: 0;
@@ -419,7 +470,7 @@ export default {
   font-weight: bold;
   align-content: center;
 }
-.legend-box img{
+.legend-box img {
   margin: 0 7px;
 }
 </style>
