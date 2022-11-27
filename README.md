@@ -1,45 +1,48 @@
-# [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+# Sensor Monitoring Dashboard
 
-> Admin dashboard based on light bootstrap dashboard UI template + vue-router
+> This project is based on [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 
-This project is a vue version of [Light bootstrap dashboard](https://www.creative-tim.com/product/light-bootstrap-dashboard)
-designed for vue js. The dashboard includes Bootstrap 4, vue-router, chartist, google-maps and several other plugins/components.
+This dashboard is a vue based interface to visualize sensors data stored in the backend. This source is dependant on the backend source so If you haven't already setup backend please first refer to it's documentation.
 
-Check the [Live Demo here](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard).
+## Install Docker
+The following installation script is built for Ubuntu16+, for other distributions of linux please search online.
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get -y update
+sudo apt-get -y install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
 
-![](public/Dashboard.PNG)
-## :rocket: Getting started
+# Docker official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-Vue Light Bootstrap Dashboard is built on top of Bootstrap 4, Vuejs and Vue-router. To get started do the following steps:
-1. Download the project
-2. Make sure you have node.js (https://nodejs.org/en/) installed
-3. Type `npm install` in the source folder where `package.json` is located
-4. Type `npm run dev` to start the development server
+# set up the stable repository.
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+sudo apt-get -y update
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
-The repo uses [vue-cli](https://github.com/vuejs/vue-cli) scaffolding which takes care of the development setup with webpack and all the necessary modern tools to make web development faster and easier.
+# verify docker is installed correctly 
+sudo docker run hello-world
+```
 
-## [Documentation](https://demos.creative-tim.com/vue-light-bootstrap-dashboard/documentation/#/buttons)
+## Start the project
 
-## :cloud: Build Setup
+Build the source and run with Docker.
+```
+docker build -t sensor-dashboard .
+docker run -p 8080:8080 --name sensor-dashboard -d sensor-dashboard
+```
+Verify the app is installed.
+```
+docker run -p 8080:8080 --name sensor-dashboard -d sensor-dashboard
+```
 
-### install dependencies
-`npm install`
-### serve with hot reload at localhost:8000
-`npm run dev`
-### build for production with minification
-`npm run build`
-### run unit tests
-`npm run unit`
-### run and watch unit tests
-`npm run unit:watch`
+## Connect 3D Heatmap Model
 
-## :clipboard: Contribution guide
-* `npm install` or `yarn install`
-* Please don't use jQuery or jQuery based plugins since there are many pure Vue alternatives
+To connect with the 3D model please first make sure that you have it hosted somewhere. Then modify the `<iframe>` tag in `/src/pages/HeatMap3D.vue` to match the hosting URL.
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-[CHANGELOG]: ./CHANGELOG.md
-[LICENSE]: ./LICENSE.md
-[version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
-[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
