@@ -1,6 +1,6 @@
 # Sensor Monitoring Dashboard
 
-> This project is based on [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+> This project is based on [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard)
 
 This dashboard is a vue based interface to visualize sensors data stored in the backend. This source is dependant on the backend source so If you haven't already setup backend please first refer to it's documentation.
 
