@@ -44,5 +44,5 @@ docker run -p 8080:8080 --name sensor-dashboard -d sensor-dashboard
 
 ## Connect 3D Heatmap Model
 
-To connect with the 3D model please first make sure that you have it hosted somewhere. Then modify the `<iframe>` tag in `/src/pages/HeatMap3D.vue` to match the hosting URL.
+To connect with the [3D model](https://github.com/smart-construction-group/heatmap-3d) please first make sure that you have it hosted somewhere. Then modify the `<iframe>` tag in `/src/pages/HeatMap3D.vue` to match the hosting URL.
 
