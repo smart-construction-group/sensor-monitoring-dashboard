@@ -1,6 +1,5 @@
 <template>
   <div class="frame-wrapper">
-    {{ heatmap3DSource }}
     <iframe :src="heatmap3DSource" frameborder="0"></iframe>
   </div>
 </template>
